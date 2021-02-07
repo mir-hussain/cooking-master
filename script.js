@@ -26,7 +26,6 @@ const searchButton = document.querySelector("#search-button").addEventListener("
             `;
                     foodContainer.innerHTML = foodCover;
                 });
-
                 document.querySelector("#search").value = "";
             }
         };
