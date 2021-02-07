@@ -10,18 +10,44 @@ body {
     font-family: 'PT Sans', sans-serif;
 }
 
+nav {
+    height: 60px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 1.5em;
+    color: #3b2d64;
+}
+
+nav > ul > li {
+    margin: 20px;
+    cursor: pointer;
+}
+
+#logo {
+    margin-right: auto;
+    font-family: 'Bebas Neue', cursive;
+}
+
 #search-section {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #search-section > input {
     background-color: white;
     border: none;
     height: 50px;
-    width: 300px;
+    width: 500px;
     font-size: 1.2em;
     padding-left: 10px;
     -webkit-border-top-left-radius: 6px;
