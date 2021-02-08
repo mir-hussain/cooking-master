@@ -7,7 +7,7 @@
 
 body {
     background-color: #edd263;
-    font-family: 'PT Sans', sans-serif;
+    font-family: "PT Sans", sans-serif;
 }
 
 /* ~~~~~~~~~~navbar starts from here~~~~~~~~~~~~~~~~ */
@@ -33,7 +33,7 @@ nav > ul > li {
 
 #logo {
     margin-right: auto;
-    font-family: 'Bebas Neue', cursive;
+    font-family: "Bebas Neue", cursive;
 }
 
 /* ~~~~~~~~~~search-bar starts from here~~~~~~~~~~~~~~~~ */

@@ -5,26 +5,26 @@ const searchButton = document.querySelector("#search-button").addEventListener("
     if (foodName === "") {
         return null; // To handle blank inputs
     } else {
-        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s= ${foodName}`
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s= ${foodName}`;
         fetch(url)
             .then((res) => res.json())
             .then((data) => displayFood(data));
-            document.querySelector("#search").value = "";
-            errorOutput.innerText = '';
+        document.querySelector("#search").value = "";
+        errorOutput.innerText = "";
     }
 });
 
 const foodsContainer = document.querySelector("#foods-container");
-const errorOutput =  document.querySelector("#error");
+const errorOutput = document.querySelector("#error");
 
 const displayFood = (foods) => {
-    if (foods.meals === null) { // To handle wrong input, typo or accidental inputs
-        const error = "Sorry, we do not have this recipe. Please try again."
+    if (foods.meals === null) {
+        // To handle wrong input, typo or accidental inputs
+        const error = "Sorry, we do not have this recipe. Please try again.";
         errorOutput.innerText = error;
     } else {
-        foodsContainer.innerHTML = '';
+        foodsContainer.innerHTML = "";
         foods.meals.forEach((food) => {
-            
             const foodContainer = document.createElement("div");
             foodContainer.className = "food";
             foodsContainer.appendChild(foodContainer);
@@ -36,9 +36,7 @@ const displayFood = (foods) => {
             </div>
             `;
             foodContainer.innerHTML = foodCover;
-            
         });
-        
     }
 };
 
