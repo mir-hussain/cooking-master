@@ -1,39 +1,52 @@
+////////////////////To show the search result////////////////////
+
 const searchButton = document.querySelector("#search-button").addEventListener("click", () => {
     const foodName = document.querySelector("#search").value;
     if (foodName === "") {
-        return null;
+        return null; // To handle blank inputs
     } else {
-        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s= ${foodName}`)
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s= ${foodName}`
+        fetch(url)
             .then((res) => res.json())
             .then((data) => displayFood(data));
-
-        const displayFood = (foods) => {
-            if (foods.meals === null) {
-                alert("We do not have this recipe. Please try again.");
-            } else {
-                foods.meals.forEach((food) => {
-                    const foodsContainer = document.querySelector("#foods-container");
-
-                    const foodContainer = document.createElement("div");
-                    foodContainer.className = "food";
-                    foodsContainer.appendChild(foodContainer);
-
-                    const foodCover = `
-                <div onclick="detailedInfo('${food.idMeal}')">
-                    <img src="${food.strMealThumb}">
-                    <h3> ${food.strMeal} </h3>
-                </div>
-            `;
-                    foodContainer.innerHTML = foodCover;
-                });
-                document.querySelector("#search").value = "";
-            }
-        };
+            document.querySelector("#search").value = "";
+            errorOutput.innerText = '';
     }
 });
 
+const foodsContainer = document.querySelector("#foods-container");
+const errorOutput =  document.querySelector("#error");
+
+const displayFood = (foods) => {
+    if (foods.meals === null) { // To handle wrong input, typo or accidental inputs
+        const error = "Sorry, we do not have this recipe. Please try again."
+        errorOutput.innerText = error;
+    } else {
+        foodsContainer.innerHTML = '';
+        foods.meals.forEach((food) => {
+            
+            const foodContainer = document.createElement("div");
+            foodContainer.className = "food";
+            foodsContainer.appendChild(foodContainer);
+
+            const foodCover = `
+            <div onclick="detailedInfo('${food.idMeal}')">
+                <img src="${food.strMealThumb}">
+                <h3> ${food.strMeal} </h3>
+            </div>
+            `;
+            foodContainer.innerHTML = foodCover;
+            
+        });
+        
+    }
+};
+
+////////////// To get the food details using id////////////
+
 const detailedInfo = (foodId) => {
-    const fullDetails = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${foodId}`;
+    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${foodId}`;
+    const fullDetails = url;
     fetch(fullDetails)
         .then((res) => res.json())
         .then((data) => details(data.meals[0]));
@@ -81,5 +94,3 @@ const details = (foodInfo) => {
     const detailsSection = document.getElementById("details-section");
     detailsSection.innerHTML = info;
 };
-
-document.querySelector("#search").value = "";
